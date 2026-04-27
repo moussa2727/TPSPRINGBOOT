@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Affecter des médecins aux cliniques</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title h3 mb-4 text-primary">Affecter des médecins aux cliniques</h1>
+                <form method="post" action="/clinique/affecter/save">
+                    <div class="mb-3">
+                        <label class="form-label">Clinique</label>
+                        <select class="form-select" name="idClinique">
+                            <option th:each="c : ${cliniques}" th:value="${c.idClinique}" th:text="${c.nomClinique}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Médecin</label>
+                        <select class="form-select" name="idMedecin">
+                            <option th:each="m : ${medecins}" th:value="${m.idMedecin}" th:text="${m.nom}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Affecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

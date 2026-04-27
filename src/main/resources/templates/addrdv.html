@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Nouveau rendez-vous</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <h1 class="card-title h3 mb-4 text-primary">Nouveau rendez-vous</h1>
+                <form method="post" action="/rdv/save" th:object="${newRdv}">
+                    <div class="mb-3">
+                        <label class="form-label">Date rendez-vous</label>
+                        <input type="date" class="form-control" name="date" th:field="*{date}" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Remarque</label>
+                        <input type="text" class="form-control" name="remarque" th:field="*{remarque}" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Patient</label>
+                        <select class="form-select" name="patient" th:field="*{patient.idPatient}">
+                            <option th:each="p : ${patients}" th:value="${p.idPatient}" th:text="${p.nom}"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Médecin</label>
+                        <select class="form-select" name="medecin" th:field="*{medecin.idMedecin}">
+                            <option th:each="m : ${medecins}" th:value="${m.idMedecin}" th:text="${m.nom}"></option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>
